@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-offset-3">
+			<h1>ようこそ<strong> Together-Go! </strong>へ</h1>
+			<p><strong> Togeher-Go！ </strong>は合コンやパーティーのセッティングを容易に行うことのできるwebアプリケーションです</p>
+		</div>
+	</div>
+
+	<% if user_signed_in? %>
+		<div class="row">
+			<p><%=link_to "Log in", user_path(current_user), class: "btn btn-info col-xs-6 col-xs-offset-3" %></p>
+		</div>
+		<div class="row">
+			<p><%=link_to "Sign Up", user_path(current_user.id), class: "btn btn-success col-xs-6 col-xs-offset-3" %></p>
+		</div>
+	<% else %>
+		<div class="row">
+			<p><%=link_to "Log in", new_user_session_path, class: "btn btn-info col-xs-6 col-xs-offset-3" %></p>
+		</div>
+		<div class="row">
+			<p><%=link_to "Sign Up", new_user_registration_path, class: "btn btn-success col-xs-6 col-xs-offset-3" %></p>
+		</div>
+	<% end %>
+</div>
