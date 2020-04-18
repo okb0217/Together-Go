@@ -18,6 +18,7 @@
         <% if user_signed_in? %>
           <li><span class="glyphicon glyphicon-link" aria-hidden="true"><%= link_to " About", about_path %></span></li>
           <li><span class="glyphicon glyphicon-user" aria-hidden="true"><%= link_to " MyPage", user_path(current_user.id) %></span></li>
+          <li><span class="glyphicon glyphicon-glass" aria-hidden="true"><%= link_to " parties", parties_path %></span></li>
           <li><span class="glyphicon glyphicon-log-out" aria-hidden="true"><%= link_to " Log out", destroy_user_session_path, method: :delete %></span></li>
         <% else %>
           <li><span class="glyphicon glyphicon-link" aria-hidden="true"><%= link_to " About", about_path %></span></li>
