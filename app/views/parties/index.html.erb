@@ -9,7 +9,8 @@
     			<div class="party-box">
     				<div class="row">
     					<div class="col-xs-4">
-							<%= attachment_image_tag party.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", size:'100x100' %>
+							<%= attachment_image_tag party.user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg", size:'150x150' %>
+							<p><%= link_to "#{party.user.name}",user_path(party.user.id) %></p>
 						</div>
 						<div class="col-xs-8">
 							<% if party.user.is_gender == true %>
@@ -29,3 +30,4 @@
     	</div>
     </div>
 </div>
+
