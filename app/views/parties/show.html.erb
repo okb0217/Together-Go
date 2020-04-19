@@ -1,2 +1,32 @@
-<h1>Partys#show</h1>
-<p>Find me in app/views/partys/show.html.erb</p>
+<div class="container">
+    <div class="row">
+    	<h1><strong>パーティー詳細</strong></h1>
+    	<div class="col-xs-4">
+    	</div>
+    	<div class="col-xs-8">
+    		<div class="party-box">
+				<div class="row">
+					<div class="col-xs-4">
+						<%= attachment_image_tag @party.user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg", size:'150x150' %>
+						<p><%= link_to "#{@party.user.name}",user_path(@party.user.id) %></p>
+					</div>
+					<div class="col-xs-8">
+						<% if @party.user.is_gender == true %>
+							<p>性別　　　　　女性</p>
+						<% else %>
+							<p>性別　　　　　男性</p>
+						<% end %>
+						<p>場所　　　　　<%= @party.place %></p>
+						<p>年齢　　　　　<%= @party.age %></p>
+						<p>参加人数　　　<%= @party.people_count %></p>
+						<p>詳細文　　　　<%= @party.introduction %></p>
+						<% if @party.user.id == current_user.id %>
+							<%= link_to "パーティーを編集する",edit_party_path%>/
+							<%= link_to "パーティーを削除する", party_path, method: :delete,"data-confirm" => "本当に削除しますか？" %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+    	</div>
+    </div>
+</div>

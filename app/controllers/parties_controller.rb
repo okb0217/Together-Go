@@ -6,6 +6,7 @@ class PartiesController < ApplicationController
   end
 
   def show
+    @party = Party.find(params[:id])
   end
 
   def new
@@ -20,7 +21,7 @@ class PartiesController < ApplicationController
   	@party = Party.new(party_params)
   	@party.user_id=current_user.id
   	if  @party.save
-		redirect_to parties_path
+		redirect_to user_path(current_user.id)
 	else
 		render :new
 	end
@@ -43,9 +44,19 @@ class PartiesController < ApplicationController
 	end
   end
 
+  def destroy
+    party=Party.find(params[:id])
+    party.destroy
+    redirect_to user_path(current_user.id)
+  end
+
   private
   def party_params
   params.require(:party).permit(:place, :age, :people_count, :introduction)
   end
 
 end
+
+
+
+
