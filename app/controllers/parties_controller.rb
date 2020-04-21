@@ -7,6 +7,21 @@ class PartiesController < ApplicationController
 
   def show
     @party = Party.find(params[:id])
+    # 各check変数を初期化
+    @my_check = 1 #current_userがpartner_partyへリクエストしていない場合"１"
+    @partner_check = 1 #partner_partyがcurrent_userをリクエストしていない場合"１"
+    current_user.requests.each_with_index do |r,index|
+      if r.partner_party_id == @party.id
+        @my_check = 2#current_userがpartner_partyへリクエストしている場合"2"
+        break
+        end
+      end
+    @party.requests.each_with_index do |r,index|
+      if r.partner_user_id == current_user.id
+        @partner_check = 2#partner_partyがcurrent_userをリクエストしている場合"２"
+        break
+        end
+      end
   end
 
   def new

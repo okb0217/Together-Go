@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   	get "about" => "users#about"
 
   	resources :parties
+
+  	resources :requests, only: [:create, :destroy, :index, :show, :new]
 end
