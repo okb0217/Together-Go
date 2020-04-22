@@ -15,10 +15,9 @@
     						<p>リクエスト中<br><%= f.submit "リクエストを取り消す", class:"btn btn-danger" %></p>
     					<% end %>
     				<% elsif @my_check == 1 && @partner_check == 2 %>
-    					<% request = Request.find_by(user_id:@party.user.id, party_id:@party.id) %>
-    					<%= link_to "リクエストが来ています", request_path(request), class:"btn btn-primary" %>
+    					<%= link_to "リクエストが来ています", request_path(@request), class:"btn btn-primary" %>
     				<% else %>
-    					<p>相互関係になっています</p>
+    					<p>相互関係になっています<br>チャットページへ</p>
     				<% end %>
     			</div>
     		<% end %>

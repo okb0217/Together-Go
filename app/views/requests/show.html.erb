@@ -1,2 +1,52 @@
-<h1>Requests#show</h1>
-<p>Find me in app/views/requests/show.html.erb</p>
+<div class="container">
+    <div class="row">
+    	<div class="col-xs-6">
+    		<div class="row">
+    			<h3><strong>あなたのパーティー</strong></h3>
+				<div class="col-xs-4">
+					<%= attachment_image_tag @request.partner_user, :profile_image, :fill, 115, 115, fallback: "no_image.jpg", size:'115x115' %>
+					<P><%= @request.partner_user.name %></P>
+				</div>
+				<div class="col-xs-8">
+		    		<% if @request.partner_user.is_gender == true %>
+						<p>性別　　　　　女性</p>
+					<% else %>
+						<p>性別　　　　　男性</p>
+					<% end %>
+					<p>場所　　　　　<%= @request.partner_party.place %></p>
+					<p>年齢　　　　　<%= @request.partner_party.age %></p>
+					<p>参加人数　　　<%= @request.partner_party.people_count %></p>
+					<p>詳細文　　　　<%= @request.partner_party.introduction %></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<div class="row">
+				<h3><strong>お相手のパーティー</strong></h3>
+				<div class="col-xs-4">
+					<%= attachment_image_tag @request.user, :profile_image, :fill, 115, 115, fallback: "no_image.jpg", size:'115x115' %>
+					<P><%= link_to "#{@request.user.name}",user_path(@request.user.id) %></P>
+				</div>
+				<div class="col-xs-8">
+		    		<% if @request.user.is_gender == true %>
+						<p>性別　　　　　女性</p>
+					<% else %>
+						<p>性別　　　　　男性</p>
+					<% end %>
+					<p>場所　　　　　<%= @request.party.place %></p>
+					<p>年齢　　　　　<%= @request.party.age %></p>
+					<p>参加人数　　　<%= @request.party.people_count %></p>
+					<p>詳細文　　　　<%= @request.party.introduction %></p>
+				</div>
+				<%= form_with model: @request, url: requests_path ,local: true, method: :post do |f| %>
+					<%= f.hidden_field :user_id, :value => current_user.id %>
+					<%= f.hidden_field :party_id, :value => @request.partner_party.id %>
+					<%= f.hidden_field :partner_user_id, :value => @request.user.id %>
+					<%= f.hidden_field :partner_party_id, :value => @request.party.id %>
+					<%= f.submit "リクエストを許可する", class:"btn btn-primary" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+

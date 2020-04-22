@@ -30,8 +30,8 @@
 				<% if @user.id == current_user.id %>
 					<p><%= link_to "＜パーティーを登録する＞",new_party_path %></p>
 					<p><%= link_to "＜パーティー相手を探す＞",parties_path %></p>
+					<p><%= link_to "＜受付リクエスト一覧＞",requests_path %></p>
 					<p>＜チャット一覧＞</p>
-					<p>＜受付リクエスト一覧＞<br></p>
 				<% end %>
 			</div>
 		</div>
