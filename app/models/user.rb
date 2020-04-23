@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :parties
   has_many :requests
 
+  validates :introduction, presence: true, length: {maximum: 100}
+  validates :age , :name , presence: true
 end

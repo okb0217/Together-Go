@@ -1,5 +1,13 @@
 <div class="container">
     <div class="row">
+      <% if @user.errors.any? %>
+        <h3><%= @user.errors.count %>件のエラー</h3>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
     	<div class="col-xs-10 col-xs-offset-2">
     		<h1><strong>会員情報編集/登録</strong></h1>
 

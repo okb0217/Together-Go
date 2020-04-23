@@ -1,11 +1,10 @@
-<% if flash[:notice] %>
-  <div class="flash">
-    <p><%= flash[:notice] %></p>
-  </div>
-<% end %>
-
 <div class="container">
 	<div class="row">
+		<% if flash[:notice] %>
+  			<div class="flash">
+    			<p><%= flash[:notice] %></p>
+  			</div>
+		<% end %>
 		<% if @user.id == current_user.id %>
 			<h3><strong>あなたのホーム</strong></h3>
 		<% else %>
