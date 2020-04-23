@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   	resources :parties
 
   	resources :requests, only: [:create, :destroy, :index, :show, :new]
+
+  	get "search" => "searches#search"
 end

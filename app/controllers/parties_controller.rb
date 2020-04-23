@@ -53,7 +53,7 @@ class PartiesController < ApplicationController
   def update
   	@party = Party.find(params[:id])
   	if  @party.update(party_params)
-		flash[:notice] = "You have updated party successfully."
+		flash[:notice] = "パーティー情報を編集しました！"
 	    redirect_to party_path(@party)
 	else
 	    render action: :edit
