@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     requests_for_me = Request.where(partner_user_id: current_user.id)
