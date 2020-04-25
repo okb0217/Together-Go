@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_093338) do
+ActiveRecord::Schema.define(version: 2020_04_25_104307) do
+
+  create_table "chats", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_chats_on_room_id"
+    t.index ["user_id"], name: "index_chats_on_user_id"
+  end
 
   create_table "parties", force: :cascade do |t|
     t.integer "user_id"
@@ -31,6 +41,21 @@ ActiveRecord::Schema.define(version: 2020_04_19_093338) do
     t.datetime "updated_at", null: false
     t.index ["partner_party_id"], name: "index_requests_on_partner_party_id"
     t.index ["partner_user_id"], name: "index_requests_on_partner_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_rooms", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_user_rooms_on_room_id"
+    t.index ["user_id", "room_id"], name: "index_user_rooms_on_user_id_and_room_id", unique: true
+    t.index ["user_id"], name: "index_user_rooms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
