@@ -12,7 +12,7 @@
 		<% end %>
 		<div class="col-xs-4">
 			<div class="profile">
-				<%= attachment_image_tag @user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg", size:'150x150' %>
+				<%= attachment_image_tag @user, :profile_image, :fill, 150, 150, fallback: asset_path("no_image.jpg"), size:'150x150' %>
 				<p>名前　　　　<%= @user.name %></p>
 				<% if @user.is_gender == true %>
 					<p>性別　　　　女性</p>
@@ -44,7 +44,7 @@
 				<div class="party-box">
     				<div class="row">
     					<div class="col-xs-4">
-							<%= attachment_image_tag party.user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg", size:'150x150' %>
+							<%= attachment_image_tag party.user, :profile_image, :fill, 150, 150, fallback: asset_path("no_image.jpg"), size:'150x150' %>
 							<p><%= @user.name %></p>
 						</div>
 						<div class="col-xs-8">
