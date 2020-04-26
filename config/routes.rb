@@ -1,3 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+	root "users#top"
+	devise_for :users
+	resources :users, only: [:show, :edit, :update]
+  	get "about" => "users#about"
+
+  	resources :parties
+
+  	resources :requests, only: [:create, :destroy, :index, :show, :new]
+
+  	resources :chats, only: [:create, :destroy, :index, :show]
+
+  	get "search" => "searches#search"
+
 end

@@ -10,6 +10,25 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="navbar">
+      <nav class="nav navbar-nav navbar-left">
+          <%= link_to "Together-Go!", root_path %>
+      </nav>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><span class="glyphicon glyphicon-link" aria-hidden="true"><%= link_to " About", about_path %></span></li>
+          <li><span class="glyphicon glyphicon-user" aria-hidden="true"><%= link_to " Home", user_path(current_user.id) %></span></li>
+          <li><span class="glyphicon glyphicon-glass" aria-hidden="true"><%= link_to " parties", parties_path %></span></li>
+          <li><span class="glyphicon glyphicon-log-out" aria-hidden="true"><%= link_to " Log out", destroy_user_session_path, method: :delete %></span></li>
+        <% else %>
+          <li><span class="glyphicon glyphicon-link" aria-hidden="true"><%= link_to " About", about_path %></span></li>
+          <li><span class="glyphicon glyphicon-edit" aria-hidden="true"><%= link_to " Sign up", new_user_registration_path %></span></li>
+          <li><span class="glyphicon glyphicon-log-in" aria-hidden="true"><%= link_to " Log in", new_user_session_path %></span></li>
+        <% end %>
+      </ul>
+    </header>
+
+      <%= yield %>
+
   </body>
 </html>

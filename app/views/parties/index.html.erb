@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+    	<h1><strong>パーティー一覧</strong></h1>
+    	<div class="col-xs-4">
+    		<h3>[検索]</h3>
+    		<div class="input-group" >
+    			<%= form_with url: search_path ,local: true, method: :get do |f| %>
+    				<%= f.label :gender, "性別　" %>
+    				<label><%= f.radio_button :gender, 1 %>男性</label>
+    				<label><%= f.radio_button :gender, 2 %>女性</label><br>
+    				<%= f.label :place, "場所　" %>
+    				<%= f.text_field :place %><br>
+    				<%= f.label :age, "年齢　" %>
+    				<%= f.text_field :age %><br>
+    				<%= f.label :people_count, "人数　" %>
+    				<%= f.text_field :people_count %><br>
+    				<%= f.submit "検索する", class:"btn btn-primary" %>
+				<% end %>
+			 </div>
+    	</div>
+    	<div class="col-xs-8">
+    		<% @parties.each do |party| %>
+    			<div class="party-box">
+    				<div class="row">
+    					<div class="col-xs-4">
+							<%= attachment_image_tag party.user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg", size:'150x150' %>
+							<p><%= link_to "#{party.user.name}",user_path(party.user.id) %></p>
+						</div>
+						<div class="col-xs-8">
+							<% if party.user.is_gender == true %>
+								<p>性別　　　　　女性</p>
+							<% else %>
+								<p>性別　　　　　男性</p>
+							<% end %>
+							<p>場所　　　　　<%= party.place %></p>
+							<p>年齢　　　　　<%= party.age %></p>
+							<p>参加人数　　　<%= party.people_count %></p>
+							<p>詳細文　　　　<%= party.introduction %></p>
+							<%= link_to "パーティ詳細を見る",party_path(party.id) %>
+						</div>
+					</div>
+    			</div>
+    		<% end %>
+    	</div>
+    </div>
+</div>
+

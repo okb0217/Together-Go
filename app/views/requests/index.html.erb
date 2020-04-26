@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="row">
+    	<h1><strong>受付リクエスト一覧</strong></h1>
+    	<% @requests.each do |request| %>
+    		<p><%= link_to "#{request.user.name}",user_path(request.user.id) %>さんからリクエストを受けています</p>
+    		<p><%= link_to "リクエスト詳細ページへ", request_path(request), class:"btn btn-primary" %></p>
+    	<% end %>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <% if @party.errors.any? %>
+            <h3><%= @party.errors.count %>件のエラー</h3>
+            <ul>
+                <% @party.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+            </ul>
+        <% end %>
+    	<div class="col-xs-10 col-xs-offset-2">
+    		<h1><strong>パーティー情報編集</strong></h1>
+
+    		<%= form_for(@party) do |f| %>
+	    		<div class="form-group">
+    				<label class="col-xs-3">性別</label>
+    				<% if current_user.is_gender == true %>
+    					<p>女性</p>
+    				<% else %>
+    					<p>男性</p>
+    				<% end %>
+    			</div>
+    			<div class="form-group">
+    				<%= f.label :"場所" ,class: "col-xs-3"%>
+    				<%= f.text_field :place ,placeholder:"場所"%>
+    			</div>
+    			<div class="form-group">
+    				<%= f.label :"年齢" ,class: "col-xs-3"%>
+    				<%= f.text_field :age ,placeholder:"年齢"%>
+    			</div>
+    			<div class="form-group">
+    				<%= f.label :"人数" ,class: "col-xs-3"%>
+    				<%= f.text_field :people_count ,placeholder:"人数"%>
+    			</div>
+    			<div class="form-group">
+    				<%= f.label :"詳細文" ,class: "col-xs-3"%>
+    				<%= f.text_area :introduction ,placeholder:"詳細文"%>
+    			</div>
+    			<%= f.submit "保存する",class:"btn btn-info"%>
+    		<% end %>
+    	</div>
+    </div>
+</div>

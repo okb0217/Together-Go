@@ -1,0 +1,70 @@
+<div class="container">
+	<div class="row">
+		<% if flash[:notice] %>
+  			<div class="flash">
+    			<p><%= flash[:notice] %></p>
+  			</div>
+		<% end %>
+		<% if @user.id == current_user.id %>
+			<h3><strong>あなたのホーム</strong></h3>
+		<% else %>
+			<h3><strong><%= @user.name %>さんのホーム</strong></h3>
+		<% end %>
+		<div class="col-xs-4">
+			<div class="profile">
+				<%= attachment_image_tag @user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg", size:'150x150' %>
+				<p>名前　　　　<%= @user.name %></p>
+				<% if @user.is_gender == true %>
+					<p>性別　　　　女性</p>
+				<% else %>
+					<p>性別　　　　男性</p>
+				<% end %>
+				<p>年齢　　　　<%= @user.age %></p>
+				<p>自己紹介　　<%= @user.introduction %></p>
+				<% if @user.id == current_user.id %>
+					<%= link_to "プロフィールを編集する",edit_user_path, class:"btn btn-primary" %>
+				<% end %>
+			</div>
+			<div class="links">
+				<% if @user.id == current_user.id %>
+					<p><%= link_to "＜パーティーを登録する＞",new_party_path %></p>
+					<p><%= link_to "＜パーティー相手を探す＞",parties_path %></p>
+					<p><%= link_to "＜受付リクエスト一覧＞",requests_path %></p>
+					<p><%= link_to "＜チャット一覧＞",chats_path %></p>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-xs-8">
+			<% if @user.id == current_user.id %>
+				<h4><strong>あなたのパーティー一覧</strong></h4>
+			<% else %>
+				<h4><strong><%= @user.name %>さんのパーティー一覧</strong></h4>
+			<% end %>
+			<% @user.parties.each do |party| %>
+				<div class="party-box">
+    				<div class="row">
+    					<div class="col-xs-4">
+							<%= attachment_image_tag party.user, :profile_image, :fill, 150, 150, fallback: "no_image.jpg", size:'150x150' %>
+							<p><%= @user.name %></p>
+						</div>
+						<div class="col-xs-8">
+							<% if party.user.is_gender == true %>
+								<p>性別　　　　　女性</p>
+							<% else %>
+								<p>性別　　　　　男性</p>
+							<% end %>
+							<p>場所　　　　　<%= party.place %></p>
+							<p>年齢　　　　　<%= party.age %></p>
+							<p>参加人数　　　<%= party.people_count %></p>
+							<p>詳細文　　　　<%= party.introduction %></p>
+							<%= link_to "パーティ詳細を見る",party_path(party.id) %>
+						</div>
+					</div>
+    			</div>
+    		<% end %>
+		</div>
+	</div>
+</div>
+
+
+

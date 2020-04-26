@@ -1,0 +1,8 @@
+<div class="container">
+	<div class="row">
+		<h1><strong>チャット一覧</strong></h1>
+		<% @users.each do |user| %>
+			<p><%= link_to "#{user.name}",chat_path(user.id) %>さんからとのチャットページへ</p>
+		<% end %>
+	</div>
+</div>

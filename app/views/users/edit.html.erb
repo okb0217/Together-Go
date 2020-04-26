@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+      <% if @user.errors.any? %>
+        <h3><%= @user.errors.count %>件のエラー</h3>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    	<div class="col-xs-10 col-xs-offset-2">
+    		<h1><strong>会員情報編集/登録</strong></h1>
+
+    		<%= form_for(@user) do |f| %>
+    			<div class="form-group">
+    			   <%= f.label :"プロフィール画像" ,class: "col-xs-3"%>
+					   <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+				  </div>
+				  <div class="form-group">
+					   <%= f.label :"性別" ,class: "col-xs-3"%>
+					   <% if @user.is_gender == true %>
+						    <label><%= f.radio_button :is_gender, false%>男性</label>
+          			<label><%= f.radio_button :is_gender, true , {:checked => true}%>女性</label>
+          		<% else %>
+          			<label><%= f.radio_button :is_gender, false , {:checked => true}%>男性</label>
+          			<label><%= f.radio_button :is_gender, true%>女性</label>
+          		<% end %>
+          </div>
+    			<div class="form-group">
+    				<%= f.label :"名前" ,class: "col-xs-3"%>
+    				<%= f.text_field :name ,placeholder:"名前"%>
+    			</div>
+				  <div class="form-group">
+					   <%= f.label :"年齢" ,class: "col-xs-3"%>
+    			   <%= f.text_field :age ,placeholder:"年齢"%>
+    			</div>
+    			<div class="form-group">
+    			   <%= f.label :"自己紹介文" ,class: "col-xs-3"%>
+					   <%= f.text_area :introduction ,placeholder:"自己紹介文"%>
+				  </div>
+				  <%= f.submit "保存する",class:"btn btn-info"%>
+    		<% end %>
+    	</div>
+    </div>
+</div>
