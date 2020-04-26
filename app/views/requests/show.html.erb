@@ -4,7 +4,7 @@
     		<div class="row">
     			<h3><strong>あなたのパーティー</strong></h3>
 				<div class="col-xs-4">
-					<%= attachment_image_tag @request.partner_user, :profile_image, :fill, 115, 115, fallback: "no_image.jpg", size:'115x115' %>
+					<%= attachment_image_tag @request.partner_user, :profile_image, :fill, 115, 115, fallback: asset_path("no_image.jpg"), size:'115x115' %>
 					<P><%= @request.partner_user.name %></P>
 				</div>
 				<div class="col-xs-8">
@@ -24,7 +24,7 @@
 			<div class="row">
 				<h3><strong>お相手のパーティー</strong></h3>
 				<div class="col-xs-4">
-					<%= attachment_image_tag @request.user, :profile_image, :fill, 115, 115, fallback: "no_image.jpg", size:'115x115' %>
+					<%= attachment_image_tag @request.user, :profile_image, :fill, 115, 115, fallback: asset_path("no_image.jpg"), size:'115x115' %>
 					<P><%= link_to "#{@request.user.name}",user_path(@request.user.id) %></P>
 				</div>
 				<div class="col-xs-8">
