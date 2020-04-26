@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   	resources :requests, only: [:create, :destroy, :index, :show, :new]
 
+  	resources :chats, only: [:create, :destroy, :index, :show]
+
   	get "search" => "searches#search"
 
-  	get "chat/:id" => "chats#show", as: "chat"
-  	get "chat" => "chats#index"
 end

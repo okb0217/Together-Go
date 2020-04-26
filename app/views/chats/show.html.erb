@@ -1,19 +1,26 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-6 col-xs-offset-3">
-			<h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= @user.name %> さんとのチャット</h1>
+			<h1><%= @user.name %> さんとのチャット</h1>
 
-			<div class="message" style="width: 400px;">
-			  <% @chats.each do |chat| %>
+			<div class="message">
+			  <% @chats.last(100).each do |chat| %>
 			    <% if chat.user_id == current_user.id %>
-			      <p style="text-align: right;"><%= chat.message %></p>
+			      <p style="text-align: right;"><%= chat.message %>　<%= link_to "削除する", chat_path(chat.id), method: :delete,"data-confirm" => "本当に削除しますか？" %></p>
 			    <% else %>
 			      <p style="text-align: left;"><%= chat.message %></p>
 			    <% end %>
 			  <% end %>
 			</div>
-
-			<input type="text" class="post">
+			<div class="row">
+				<div class="col-xs-6 col-xs-offset-3">
+				<%= form_with model: @chat, url: chats_path ,local: true do |f| %>
+					<%= f.hidden_field :user_id, :value => current_user.id %>
+					<%= f.hidden_field :room_id, :value => @room.id %>
+					<%= f.text_field :message ,placeholder:"メッセージ入力"%>
+					<%= f.submit "送信する",class:"btn btn-info"%>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>

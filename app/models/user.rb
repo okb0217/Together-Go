@@ -13,6 +13,6 @@ class User < ApplicationRecord
   has_many :chats
   has_many :rooms, through: :user_rooms
 
-  validates :introduction, presence: true, length: {maximum: 100}
-  validates :age , :name , presence: true
+  validates :introduction, length: {maximum: 100}
+  validates :name , presence: true
 end
