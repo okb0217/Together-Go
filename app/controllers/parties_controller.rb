@@ -62,6 +62,10 @@ class PartiesController < ApplicationController
 
   def destroy
     party=Party.find(params[:id])
+    requests = Request.where(partner_party_id: party.id)
+    requests.each do |r|
+      r.destroy
+    end
     party.destroy
     redirect_to user_path(current_user.id)
   end
