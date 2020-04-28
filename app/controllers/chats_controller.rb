@@ -23,7 +23,7 @@ class ChatsController < ApplicationController
     if @chat.save
       redirect_back(fallback_location: request.referrer)
     else
-      render :show
+      redirect_back(fallback_location: request.referrer)
     end
   end
 
